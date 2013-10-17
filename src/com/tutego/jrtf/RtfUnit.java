@@ -46,7 +46,13 @@ public enum RtfUnit
   INCH { @Override public int toTwips( double v ) { return (int) (v*1440); } },
 
   /** Measurement in cm. One cm is around 566.9 twips. */
-  CM { @Override public int toTwips( double v ) { return (int) Math.round( v * 566.9f ); } };
+  CM { @Override public int toTwips( double v ) { return (int) Math.round( v * 566.9f ); } },
+  
+  /** Measurement in 50th of a percent. Twips cannot be used. */
+  PERCENTAGE { 
+	  @Override public int toTwips( double v ) { throw new UnsupportedOperationException("This method cannot be used by RtfUnit.PERCENTAGE unit. Use toPercentage(double) instead."); } 
+	  @Override public int toPercentage(double v) { return new Double(v * 50).intValue(); } 
+  };
 
   /**
    * Converts to twips.
@@ -54,4 +60,11 @@ public enum RtfUnit
    * @return Twips.
    */
   public abstract int toTwips( double v );
+  
+  /**
+   * Converts to 50th of percentage.
+   * @param v Value to convert to percentage.
+   * @return percentage.
+   */
+  public int toPercentage(double v) { throw new UnsupportedOperationException("This method can only be used by RtfUnit.PERCENTAGE unit."); };
 }

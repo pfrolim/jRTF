@@ -182,14 +182,34 @@ public abstract class RtfRow extends RtfPara
   }  
   
   /**
-  * Keep table row together. This row cannot be split by a page break. This
-  * property is assumed to be off unless the control word is present.
-  * @return {@code this}-object.
-  */
+   * Keep table row together. This row cannot be split by a page break. This
+   * property is assumed to be off unless the control word is present.
+   * @return {@code this}-object.
+   */
   public RtfRow rowKeep()
   {
-	  tbldef.append("\\trkeep");
-	  return this;
+	tbldef.append("\\trkeep");
+	return this;
   }
   
+	/**
+	 * Defines the row width.
+	 * @param width Width of the row.
+	 * @param unit Measurement.
+	 * @return {@code this}-object.
+	 */
+	public RtfRow rowWidth(double width, RtfUnit unit) {
+		switch (unit) {
+			case PERCENTAGE:
+				tbldef.append("\\trftsWidth2\\trwWidth");
+				tbldef.append(unit.toPercentage(width));
+			break;
+
+			default:
+				tbldef.append("\\trftsWidth3\\trwWidth");
+				tbldef.append(unit.toTwips(width));
+			break;
+		}
+		return this;
+	}
 }
