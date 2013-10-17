@@ -180,4 +180,16 @@ public abstract class RtfRow extends RtfPara
     tbldef.append( "\\trrh" ).append( unit.toTwips( height ) );
     return this;
   }  
+  
+  /**
+  * Keep table row together. This row cannot be split by a page break. This
+  * property is assumed to be off unless the control word is present.
+  * @return {@code this}-object.
+  */
+  public RtfRow rowKeep()
+  {
+	  tbldef.append("\\trkeep");
+	  return this;
+  }
+  
 }
