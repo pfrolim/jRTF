@@ -240,4 +240,29 @@ public abstract class RtfPara
       }
     };
   }
+  
+  /**
+   * Writes a row with a sequence of paragraph cells.
+   * @param cells Cells of the row.
+   * @return New object for the row.
+   */
+  public static RtfRow row(final RtfCell... cells)
+  {
+	  if ( cells == null || cells.length == 0 )
+	      throw new RtfException("There has to be at least one cell in a row");
+	  
+	  return new RtfRow() {
+		
+		@Override
+		void rtf(Appendable out, boolean withEndingPar) throws IOException {
+			out.append("{\\trowd\\trautofit1");
+			out.append(tbldef);
+			out.append("\n");
+			for (RtfCell cell : cells) {
+				cell.rtf(out, false);
+			}
+			out.append("\\row}\n");
+		}
+	};
+  }
 }
