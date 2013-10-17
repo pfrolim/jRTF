@@ -231,6 +231,15 @@ public class RtfDocfmt
   {
     return new RtfDocfmt( "\\facingp" );
   }
+  
+  /**
+   * First page has a special format.
+   * @return New {@code RtfDocfmt} object.
+   */
+  public static RtfDocfmt firstPage()
+  {
+	  return new RtfDocfmt( "\\titlepg" );
+  }
 
   /**
    * Switches margin definitions on left and right pages.
