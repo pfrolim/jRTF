@@ -277,4 +277,22 @@ public class RtfSectionFormatAndHeaderFooter
   {
     return new RtfSectionFormatAndHeaderFooter( Rtf.frameRtfParagraphWithEndingPar( "footer", para ) );
   }
+  
+	/**
+	 * Watermarks are defined inside headers so that this method must be called
+	 * by the return of one of the "header...()" methods or it will have no
+	 * effect.
+	 * 
+	 * @param watermark
+	 *            {@link RtfWatermark}.
+	 * @return New {@code RtfSectionFormatAndHeaderFooter} object.
+	 */
+	public RtfSectionFormatAndHeaderFooter withBackground(RtfWatermark watermark) {
+		return new RtfSectionFormatAndHeaderFooter(
+			new StringBuilder(
+				rtf.toString().replaceAll("(\\{\\\\header[a-z]?)", 
+						"$1" + watermark.rtf())
+			)
+		);
+	}
 }
