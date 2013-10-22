@@ -260,6 +260,7 @@ public class RtfSectionFormatAndHeaderFooter
 
   /**
    * Puts a header with a given paragraph on the first page in this current section.
+   * <p><strong>NOTE</strong> that this header only works in conjunction with {@link RtfDocfmt#firstPage()}.
    * @param para Paragraph for the header.
    * @return New {@code RtfSectionFormatAndHeaderFooter} object.
    */
@@ -277,6 +278,17 @@ public class RtfSectionFormatAndHeaderFooter
   {
     return new RtfSectionFormatAndHeaderFooter( Rtf.frameRtfParagraphWithEndingPar( "footer", para ) );
   }
+  
+  	/**
+  	 * Puts a footer with a given paragraph on first pages in this current section.
+  	 * <p><strong>NOTE</strong> that this header only works in conjunction with {@link RtfDocfmt#firstPage()}.
+  	 * @param para Paragraph for the footer.
+  	 * @return New {@code RtfSectionFormatAndHeaderFooter} object.
+  	 */
+	public static RtfSectionFormatAndHeaderFooter footerOnFirstPage(RtfPara para) 
+	{
+		return new RtfSectionFormatAndHeaderFooter( Rtf.frameRtfParagraphWithEndingPar( "footerf", para ) );
+	}
   
 	/**
 	 * Watermarks are defined inside headers so that this method must be called
