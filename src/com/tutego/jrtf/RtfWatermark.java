@@ -33,13 +33,14 @@ package com.tutego.jrtf;
 
 /**
  * Class representing a watermark with factory methods and definitions.
- * @author pfrolim@gmail.com
+ * 
+ * @author pedro.costa@xseed.com.br
  */
 public class RtfWatermark {
 	
 	/**
 	 * Options for text watermarks.
-	 * @author pedro.costa
+	 * @author pedro.costa@xseed.com.br
 	 */
 	public static enum Text {
 		AMOSTRA,
@@ -64,7 +65,7 @@ public class RtfWatermark {
 	
 	/**
 	 * Options for watermark layout.
-	 * @author pedro.costa
+	 * @author pedro.costa@xseed.com.br
 	 */
 	public static enum Layout {
 		Diagonal, Horizontal;

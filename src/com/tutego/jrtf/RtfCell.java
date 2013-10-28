@@ -95,6 +95,28 @@ public abstract class RtfCell extends RtfPara {
 
 		return this;
 	}
+
+	/**
+	 * The first cell in a range of table cells to be merged.
+	 * @return {@code this}-object.
+	 */
+	public RtfCell firstMerged() {
+		celldef.append("\\clmgf");
+		return this;
+	}
+
+	/**
+	 * Contents of the table cell are merged with those of the preceding cell.
+	 * @return {@code this}-object.
+	 */
+	public RtfCell mergePrevious() {
+		celldef.append("\\clmrg");
+		return this;
+	}
+	
+	public static RtfCell cell() {
+		return cell(null);
+	}
 	
 	public static RtfCell cell(final String text) {
 		return new RtfCell() {
@@ -108,9 +130,5 @@ public abstract class RtfCell extends RtfPara {
 				out.append("\\intbl\\cell\n");
 			}
 		};
-	}
-	
-	public static RtfCell cell() {
-		return cell(null);
 	}
 }

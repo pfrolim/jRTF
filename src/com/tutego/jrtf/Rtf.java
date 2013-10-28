@@ -33,7 +33,10 @@ package com.tutego.jrtf;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import javax.xml.bind.DatatypeConverter;
 
 /**
  * Main class to build and stream a RTF document.

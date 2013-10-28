@@ -212,4 +212,13 @@ public abstract class RtfRow extends RtfPara
 		}
 		return this;
 	}
+
+	/**
+	 * Table row header. This row should appear at the top of every page the current table appears on.
+	 * @return {@code this}-object.
+	 */
+	public RtfPara tableHeader() {
+		tbldef.append("\\trhdr");
+		return this;
+	}
 }
