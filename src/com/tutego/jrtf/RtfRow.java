@@ -217,8 +217,17 @@ public abstract class RtfRow extends RtfPara
 	 * Table row header. This row should appear at the top of every page the current table appears on.
 	 * @return {@code this}-object.
 	 */
-	public RtfPara tableHeader() {
+	public RtfRow tableHeader() {
 		tbldef.append("\\trhdr");
+		return this;
+	}
+	
+	/**
+	 * All content of this row is bold.
+	 * @return {@code this}-object.
+	 */
+	public RtfRow bold() {
+		tbldef.append("\\b");
 		return this;
 	}
 }

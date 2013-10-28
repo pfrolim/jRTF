@@ -115,7 +115,20 @@ public abstract class RtfCell extends RtfPara {
 	}
 	
 	public static RtfCell cell() {
-		return cell(null);
+		return cell((String) null);
+	}
+	
+	public static RtfCell cell(final RtfText text) {
+		return new RtfCell() {
+			@Override
+			void rtf(Appendable out, boolean withEndingPar) throws IOException {
+				out.append(celldef);
+				out.append("\\cellx0");
+				text.rtf(out);
+				out.append(alignment);
+				out.append("\\intbl\\cell\n");
+			}
+		};
 	}
 	
 	public static RtfCell cell(final String text) {
