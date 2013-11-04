@@ -114,6 +114,90 @@ public abstract class RtfCell extends RtfPara {
 		return this;
 	}
 	
+	/**
+	 * Top table cell border.
+	 * @param borderStyle {@link RtfBorders}
+	 * @return {@code this}-object.
+	 */
+	public RtfCell topBorder(RtfBorders borderStyle) {
+		celldef.append("\\clbrdrb");
+		celldef.append(borderStyle.toRtf());
+		return this;
+	}
+	
+	/**
+	 * Top table cell single thickness border (default style). 
+	 * @return {@code this}-object.
+	 */
+	public RtfCell topBorder() {
+		celldef.append("\\clbrdrb");
+		celldef.append(RtfBorders.SINGLE_THICKNESS);
+		return this;
+	}
+	
+	/**
+	 * Left table cell border.
+	 * @param borderStyle
+	 * @return
+	 */
+	public RtfCell leftBorder(RtfBorders borderStyle) {
+		celldef.append("\\clbrdrl");
+		celldef.append(borderStyle.toRtf());
+		return this;
+	}
+	
+	/**
+	 * Left table cell single thickness border (default style). 
+	 * @return
+	 */
+	public RtfCell leftBorder() {
+		celldef.append("\\clbrdrl");
+		celldef.append(RtfBorders.SINGLE_THICKNESS);
+		return this;
+	}
+	
+	/**
+	 * Right table cell border.
+	 * @param borderStyle {@link RtfBorders}
+	 * @return {@code this}-object.
+	 */
+	public RtfCell rightBorder(RtfBorders borderStyle) {
+		celldef.append("\\clbrdrr");
+		celldef.append(borderStyle.toRtf());
+		return this;
+	}
+	
+	/**
+	 * Right table cell single thickness border (default style).
+	 * @return {@code this}-object.
+	 */
+	public RtfCell rightBorder() {
+		celldef.append("\\clbrdrr");
+		celldef.append(RtfBorders.SINGLE_THICKNESS);
+		return this;
+	}
+	
+	/**
+	 * Bottom table cell border.
+	 * @param borderStyle {@link RtfBorders}
+	 * @return {@code this}-object.
+	 */
+	public RtfCell bottonBorder(RtfBorders borderStyle) {
+		celldef.append("\\clbrdrb");
+		celldef.append(borderStyle.toRtf());
+		return this;
+	}
+	
+	/**
+	 * Bottom table cell single thickness border (default style).
+	 * @return {@code this}-object.
+	 */
+	public RtfCell bottonBorder() {
+		celldef.append("\\clbrdrb");
+		celldef.append(RtfBorders.SINGLE_THICKNESS);
+		return this;
+	}
+	
 	public static RtfCell cell() {
 		return cell((String) null);
 	}
@@ -136,8 +220,8 @@ public abstract class RtfCell extends RtfPara {
 			@Override
 			void rtf(Appendable out, boolean withEndingPar) throws IOException {
 				out.append(celldef);
-				out.append("\\cellx0{\n");
-				out.append(text == null ? "" : text.replaceAll("\n", "\\\\line\n"));
+				out.append("\\cellx0{");
+				out.append(text == null ? "" : text.replaceAll("\n", "\\\\line\n")); // FIXME include other tags
 				out.append("}");
 				out.append(alignment);
 				out.append("\\intbl\\cell\n");

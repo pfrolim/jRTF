@@ -259,6 +259,10 @@ public abstract class RtfPara
 			out.append(tbldef);
 			out.append("\n");
 			for (RtfCell cell : cells) {
+				if (hasBottonCellBorder) out.append("\\clbrdrb\\brdrs");
+				if (hasTopCellBorder) out.append("\\clbrdrt\\brdrs");
+				if (hasLeftCellBorder) out.append("\\clbrdrl\\brdrs");
+				if (hasRightCellBorder) out.append("\\clbrdrr\\brdrs");
 				cell.rtf(out, false);
 			}
 			out.append("\\row}\n");

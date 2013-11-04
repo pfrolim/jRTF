@@ -44,6 +44,11 @@ public abstract class RtfRow extends RtfPara
 
   /** Collects the RTF for the table definitions. */
   StringBuilder tbldef = new StringBuilder();
+  
+  boolean hasTopCellBorder = false;
+  boolean hasLeftCellBorder = false;
+  boolean hasRightCellBorder = false;
+  boolean hasBottonCellBorder = false;
 
   // Row Formatting
 
@@ -123,7 +128,8 @@ public abstract class RtfRow extends RtfPara
    */
   public RtfRow bottomCellBorder()
   {
-    tbldef.append( "\\clbrdrb\\brdrs" );
+//    tbldef.append( "\\clbrdrb\\brdrs" );
+	  hasBottonCellBorder= true;
     return this;
   }
 
@@ -133,7 +139,8 @@ public abstract class RtfRow extends RtfPara
    */
   public RtfRow topCellBorder()
   {
-    tbldef.append( "\\clbrdrt\\brdrs" );
+//    tbldef.append( "\\clbrdrt\\brdrs" );
+	  hasTopCellBorder = true;
     return this;
   }
 
@@ -143,7 +150,8 @@ public abstract class RtfRow extends RtfPara
    */
   public RtfRow leftCellBorder()
   {
-    tbldef.append( "\\clbrdrl\\brdrs" );
+//    tbldef.append( "\\clbrdrl\\brdrs" );
+	  hasLeftCellBorder = true;
     return this;
   }
 
@@ -153,7 +161,8 @@ public abstract class RtfRow extends RtfPara
    */
   public RtfRow rightCellBorder()
   {
-    tbldef.append( "\\clbrdrr\\brdrs" );
+//    tbldef.append( "\\clbrdrr\\brdrs" );
+	  hasRightCellBorder = true;
     return this;
   }
 
