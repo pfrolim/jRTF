@@ -1,8 +1,10 @@
 package com.tutego.jrtf;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -15,6 +17,31 @@ import java.util.Map;
  * @author pedro.costa@xseed.com.br
  */
 public class RtfUtils {
+	
+	/**
+	 * Opens a file using system default file editor.
+	 * @param file File to be open.
+	 * @return <code>true</code> if operation was sucessful or <code>false</code> otherwise.
+	 */
+	public static boolean openSystemDefaultEditor(final File file) {
+		if (!Desktop.isDesktopSupported()) {
+			return false;
+		}
+
+		Desktop desktop = Desktop.getDesktop();
+		if (!desktop.isSupported(Desktop.Action.EDIT)) {
+			return false;
+		}
+
+		try {
+			desktop.browse(file.toURI());
+		} catch (IOException e) {
+			// Log an error
+			return false;
+		}
+
+		return true;
+	}
 	
 	/**
 	 * Reads a file and returns its content as a String.
